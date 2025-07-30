@@ -1,6 +1,8 @@
 from django.urls import path
 from .views import post
+from EBAC import views
 
 urlpatterns = [
-    path('', post, name='post'),  # ← aqui definimos a URL para a view 'post'
+    path("", views.PostView.as_view(), name="home"), 
+    path("<slug:slug>/", views.PostDetailView.as_view(), name="post_detail"),
 ]
