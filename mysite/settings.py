@@ -11,16 +11,18 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE_DIR / 'EBAC'))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-rv)#r0e5n=vnhzy-of!x3b+21105!k7vdsvc2qy&86pd09l!&m'
+SECRET_KEY = 'django-insecure-2^*de-9q*iw%8-$4u+_=g0r+2%lt8#36utpvr0#79u4b$q+0&('
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,12 +33,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'EBAC',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +58,8 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 🔧 Garante que a pasta de templates personalizada seja reconhecida
+        'DIRS': [BASE_DIR /  'templates'], #
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,3 +125,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
