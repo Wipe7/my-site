@@ -19,8 +19,8 @@ from django.urls import path
 from core.views import home, api, contador_api, detalhe_post
 
 urlpatterns = [
-    path("", home, name="home"),  # Rota raiz (vazia)
-    path("home/", home, name="home_page"),  # Nova rota /home/
+    path("", home, name="home"),  
+    path("home/", home, name="home_page"),  
     path("admin/", admin.site.urls),
     path("post/<slug:slug>/", detalhe_post, name="detalhe_post"),
     path("api/", api, name="api"),
