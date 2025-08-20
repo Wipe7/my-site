@@ -16,10 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core import views  # importa suas views
+from core.views import home, api, contador_api, detalhe_post
 
 urlpatterns = [
+    path("", home, name="home"),  # Rota raiz (vazia)
+    path("home/", home, name="home_page"),  # Nova rota /home/
     path("admin/", admin.site.urls),
-    path("api/", views.api),  # rota para API
-    path("contador/", views.contador_api),  # rota para contador assíncrono
+    path("post/<slug:slug>/", detalhe_post, name="detalhe_post"),
+    path("api/", api, name="api"),
+    path("contador/", contador_api, name="contador"),
 ]

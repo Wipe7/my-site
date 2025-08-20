@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Página Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .content {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .post {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        .post:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 Meu Lugar!!!!!</h1>
+        <p>Bem-vindo à página inicial!</p>
+    </div>
+
+    <div class="content">
+        <h2>📝 Últimos Posts</h2>
+        
+        {% if posts %}
+            {% for post in posts %}
+            <div class="post">
+                <h3><a href="{% url 'detalhe_post' post.slug %}" style="color: #2c3e50; text-decoration: none;">
+                    {{ post.titulo }}
+                </a></h3>
+                <p>{{ post.conteudo|truncatewords:20 }}</p>
+                <small>📅 Publicado em: {{ post.data_publicacao|date:"d/m/Y H:i" }}</small>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>Nenhum post encontrado. 
+               <a href="/admin/core/post/add/" style="color: #3498db;">
+                   Crie o primeiro post aqui!
+               </a>
+            </p>
+        {% endif %}
+        
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+            <h3>🔗 Links Úteis</h3>
+            <ul>
+                <li><a href="/admin/">Painel Administrativo</a></li>
+                <li><a href="/api/">API</a></li>
+                <li><a href="/contador/">Contador Assíncrono</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
