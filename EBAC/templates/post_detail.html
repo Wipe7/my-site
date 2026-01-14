@@ -1,16 +1,16 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 card mb-4  mt-3 left  top">
-      <div class="card-body">
-        <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
-        <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
-        <p class="card-text ">{{ post.content | safe }}</p>
-      </div>
+{% block title %}{{ post.titulo }} - Meu Blog{% endblock %}
+
+{% block content %}
+<article style="background: white; padding: 2rem; border-radius: 5px;">
+    <h2>{{ post.titulo }}</h2>
+    <p style="color: #666; margin-bottom: 1rem;">
+        Publicado em: {{ post.data_publicacao|date:"d/m/Y H:i" }}
+    </p>
+    <div>
+        {{ post.conteudo|linebreaks }}
     </div>
-    {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
-  </div>
-</div>
-
-{% endblock content %}
+    <a href="{% url 'EBAC:index' %}" style="display: inline-block; margin-top: 1rem; color: #007bff;">← Voltar</a>
+</article>
+{% endblock %}
